@@ -22,6 +22,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
+	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
 
 void ATank::BeginPlay()
@@ -45,18 +46,6 @@ void ATank::Tick(float DeltaTime)
 			false,
 			HitResult
 		);
-
-		DrawDebugSphere
-		(
-			GetWorld(),
-			HitResult.ImpactPoint,
-			10.f,
-			12,
-			FColor::Red,
-			false,
-			-1.f
-		);
-
 
 		RotateTurret(HitResult.ImpactPoint);
 	}
