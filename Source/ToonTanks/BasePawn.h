@@ -38,4 +38,13 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category="Combat")
 	TSubclassOf<class AProjectile> ProjectileClass;
 
+	UPROPERTY(EditAnywhere, Category = "VFX")
+	class UParticleSystem* DeathEffect;
+
+	UPROPERTY(EditAnywhere, Category = "Sounds")
+	class USoundBase* DeathSound;
+
+	UPROPERTY(EditAnywhere, Category = "Camera Effect")
+	TSubclassOf< class UCameraShakeBase > HitCameraShakeClass;
+
 };

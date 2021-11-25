@@ -24,11 +24,17 @@ private:
 	float StartDelay = 3.0f;
 	void HandleGameStart();
 
+	int32 TurretCount = 0.f;
+	int32 GetTurretCount();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartGame();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void GameOver(bool bWonGame);
 	
 };

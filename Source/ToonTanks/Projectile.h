@@ -32,6 +32,21 @@ private:
 	UPROPERTY(EditAnywhere)
 	float Damage = 50.f;
 
+	UPROPERTY(EditAnywhere, Category = "VFX")
+	class UParticleSystem* HitEffect;
+
+	UPROPERTY(VisibleAnywhere, Category ="VFX")
+	class UParticleSystemComponent* TrailEffect;
+
+	UPROPERTY(EditAnywhere, Category = "Sounds")
+	class USoundBase* HitSound;
+
+	UPROPERTY(EditAnywhere, Category = "Sounds")
+	USoundBase* LaunchSound;
+
+	UPROPERTY(EditAnywhere, Category = "Camera Effect")
+	TSubclassOf< class UCameraShakeBase > HitCameraShakeClass;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

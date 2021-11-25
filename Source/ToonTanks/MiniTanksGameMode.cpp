@@ -23,16 +23,25 @@ void AMiniTanksGameMode::ActorDied(AActor* DeadActor)
 		if (MiniTankPlayerController)
 		{
 			MiniTankPlayerController->SetPlayerEnableState(false);
-		}	
+		}
+		GameOver(false);
 	}
 	else if (ATurret* DestroyedTurret = Cast<ATurret>(DeadActor))
 	{
 		DestroyedTurret->HandleDestruction();
+		--TurretCount;
+		if (TurretCount == 0)
+		{
+			GameOver(true);
+		}
 	}
 }
 
 void AMiniTanksGameMode::HandleGameStart()
 {
+
+	TurretCount = GetTurretCount();
+
 	Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
 	MiniTankPlayerController = Cast<AMiniTanksPlayerController>(UGameplayStatics::GetPlayerController(this, 0));
 
@@ -56,5 +65,12 @@ void AMiniTanksGameMode::HandleGameStart()
 			false
 		);
 	}
+}
+
+int32 AMiniTanksGameMode::GetTurretCount()
+{
+	TArray<AActor*> Turrets;
+	UGameplayStatics::GetAllActorsOfClass(this, ATurret::StaticClass(),Turrets);
+	return Turrets.Num();
 }
 

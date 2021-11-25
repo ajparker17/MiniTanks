@@ -26,7 +26,11 @@ void ATurret::Tick(float DeltaTime)
 
 void ATurret::CheckFireCondition()
 {
-	if (InFireRange())
+	if (Tank == nullptr)
+	{
+		return;
+	}
+	if (InFireRange() && bAlive)
 	{
 		Fire();
 	}
