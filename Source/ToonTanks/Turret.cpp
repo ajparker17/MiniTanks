@@ -45,3 +45,9 @@ bool ATurret::InFireRange()
 	}
 	return false;
 }
+
+void ATurret::HandleDestruction()
+{
+	Super::HandleDestruction();
+	Destroy();
+}
